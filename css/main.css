@@ -1,0 +1,269 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+
+@media only screen and (min-width: 800px) {
+  .header {
+    height: calc(6vw + 10px);
+    width: 100%;
+    background-color: #3D3D3D;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    text-transform: uppercase;
+  }
+  .header-logo {
+    height: calc(6vw + 10px);
+    width: 8vw;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .header-logo img {
+    height: 60%;
+    width: auto;
+  }
+  .header-navigation {
+    height: calc(6vw + 10px);
+    width: 80vw;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .header-navigation a {
+    height: calc(6vw + 10px);
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: calc(0.6vw + 4px);
+    color: white;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .header-languages {
+    height: calc(6vw + 10px);
+    width: 8vw;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .header-languages div {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: calc(0.6vw + 4px);
+    color: white;
+  }
+  .home {
+    width: 100%;
+    height: 45vw;
+    background-image: url(../img/home.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-x: center;
+    background-position-y: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .home-logo img {
+    height: 3.6vw;
+  }
+  .home-title {
+    font-family: 'Yeseva One', sans-serif;
+    font-weight: 300;
+    font-size: 2.7vw;
+    color: white;
+    text-transform: uppercase;
+  }
+  .home-link {
+    margin-top: 3vw;
+    margin-bottom: 3vw;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: calc(0.6vw + 4px);
+    color: white;
+    text-transform: uppercase;
+  }
+  .intro-1 {
+    min-height: 100vh;
+    width: 100vw;
+  }
+  .intro-1-upper {
+    height: calc(30vw + 70px);
+    width: 65vw;
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  .intro-1-upper-bg {
+    height: calc(30vw + 70px);
+    width: 65vw;
+    background-image: url(../img/bg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .intro-1-upper-text {
+    width: 28vw;
+    padding-top: 8vw;
+    margin-left: 8vw;
+  }
+  .intro-1-sub-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 1.2vw;
+    color: transparent;
+    background: -webkit-linear-gradient(200deg, #A5864F -6%, #EFCA87 55%, #A0814A 105%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .intro-1-title {
+    margin-top: 0.75vw;
+    margin-bottom: 3vw;
+    font-family: 'Yeseva One', sans-serif;
+    font-weight: 300;
+    font-size: 2.7vw;
+    color: white;
+  }
+  .intro-1-text-1 {
+    margin-top: 3vw;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: calc(0.6vw + 4px);
+    color: white;
+    text-align: justify;
+    line-height: 2em;
+    word-spacing: 0.15em;
+  }
+  .intro-1-lower {
+    margin-left: 8vw;
+  }
+  .intro-1-lower-text {
+    width: 28vw;
+    margin-top: 4vw;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: calc(0.6vw + 4px);
+    color: black;
+    text-align: justify;
+    line-height: 2em;
+    word-spacing: 0.15em;
+  }
+  .intro-1-lower-img {
+    width: 57vw;
+    height: calc(35vw + 100px);
+    background-image: url("../img/intro1.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    right: 0vw;
+    top: calc(52vw + 100px);
+  }
+  .intro-img-page {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .intro-img-page div {
+    margin-right: 1em;
+  }
+  .intro-img-page .page-bar {
+    height: 0.2em;
+    width: 3vw;
+    background-color: black;
+  }
+  .bar-horizontal {
+    width: 15vw;
+    height: 0.3vw;
+    background-color: #C09F63;
+  }
+  .bar-vertical {
+    width: 0.3vw;
+    height: 15vw;
+    background-color: #C09F63;
+  }
+}
+
+@media only screen and (max-width: 800px) and (min-aspect-ratio: 3 / 2) {
+  .header {
+    width: 100vw;
+    height: 3vw;
+    background-color: #000000;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+  }
+}
+
+@media only screen and (max-width: 800px) and (max-aspect-ratio: 3 / 2) {
+  .header {
+    width: 100vw;
+    height: 3vw;
+    background-color: #000000;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+  }
+}
+/*# sourceMappingURL=main.css.map */

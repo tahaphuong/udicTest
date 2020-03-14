@@ -8,28 +8,34 @@
 // COLOR-VARIABLES
 $bgColor: #3D3D3D;
 $mainYellow: #C09F63;
-$bgColorBlack: rgba(0, 0, 0, 0.8);
+$bgColorBlack: rgba(0, 0, 0, 0.82);
 
 
 // SIZE-VARIABLES
-$standardHeight: 3vw;
+$standardHeight: 3.3vw;
+$standardPaddingLeft: 8vw;
 
-$headerHeightPC: calc(6vw + 10px);
+$headerHeightPC: calc(6vw + 6px);
 $headerHeightMobile: 3vw;
 
-$intro1Height: calc(30vw + 70px);
+$intro1Height: calc(30vw + 50px);
 $intro1Width: 65vw;
 $intro1TextWidth: 28vw;
-$intro1ImgTop: calc(52vw + 100px);
 
+$intro1ImgTop: calc(52vw + 100px);
 $intro1ImgWidth: 57vw;
 $intro1ImgHeight: calc(35vw + 100px);
 
-$fontSubHeading: 1.2vw;
+$intro2Height: calc(42vw + 30px);
+$intro2Width: 25vw;
+
+$intro2TextWidth: $intro1Width - $standardPaddingLeft;
+
+$fontSubHeading: 1.4vw;
 $fontHeading: 2.7vw;
+$fontHeading2: 3.3vw;
 $fontText: calc(0.6vw + 4px);
 
-$standardPaddingLeft: 8vw;
 
 
 // FONT-MIXIN
@@ -67,11 +73,6 @@ html, body {
   padding: 0;
 
   overflow-x: hidden;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 
 a {
@@ -200,16 +201,19 @@ a {
     background-image: url(../img/bg.png);
     background-repeat: no-repeat;
     background-size: cover;
-    // opacity: 0.1;
+    
+    display: flex;
+    align-items: flex-end;
   }
 
-  .intro-1-upper-text {
+  .intro-1-upper-text-con {
     width: $intro1TextWidth;
-    padding-top: $standardPaddingLeft;
+
+    margin-bottom: $standardPaddingLeft/2;
     margin-left: $standardPaddingLeft;
   }
 
-  .intro-1-sub-title {
+  .intro-sub-title {
     @include fontBold(transparent, $fontSubHeading);
     background: -webkit-linear-gradient(200deg, #A5864F -6%, #EFCA87 55%, #A0814A 105%);
     background-clip: text;
@@ -227,14 +231,26 @@ a {
     @include fontDisplay(white, $fontHeading);
   }
 
-  .intro-1-text-1 {
+  .intro-1-upper-text {
+    position: relative;
+    z-index: 1;
     margin-top: $standardHeight;
 
     @include fontSemiBold(white, $fontText);
     text-align: justify;
     line-height: 2em;
-    word-spacing: 0.15em;
+    word-spacing: 0.2em;
   }
+  .intro-1-pattern img {
+    width: $intro1Width*2/13;
+    opacity: 0.35;
+  }
+  .intro-1-pattern {
+    position: absolute;
+    z-index: 0; 
+  }
+
+  // intro 1 lower part
 
   .intro-1-lower {
     margin-left: $standardPaddingLeft;
@@ -247,7 +263,11 @@ a {
     @include fontRegular(black, $fontText);
     text-align: justify;
     line-height: 2em;
-    word-spacing: 0.15em;
+    word-spacing: 0.2em;
+  }
+
+  .intro-1-img-page .page-bar {
+    background-color: black;
   }
 
   .intro-1-lower-img {
@@ -262,7 +282,128 @@ a {
     right: 0vw;
     top: $intro1ImgTop;
   }
+  // INTRO 2
+  .intro-2 {
+    width: 100%;
+    margin-top: $standardPaddingLeft;
 
+    display: flex;
+  }
+
+  .intro-2-left {
+    margin-bottom: $standardPaddingLeft/2;
+    margin-left: $standardPaddingLeft;
+  }
+
+  .intro-2-text-con {
+    width: $intro2TextWidth;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .intro-2-text-con .bar-vertical {
+    width: 1.2vw;
+  }
+
+  .intro-2-title {
+    margin-top: $standardHeight/4;
+    margin-bottom: $standardHeight;
+
+    @include fontDisplay(black, $fontHeading2);
+  }
+
+  .intro-2-text {
+    margin-left: $standardHeight/2;
+    
+    @include fontRegular(black, $fontText);
+    text-align: justify;
+    line-height: 2em;
+    word-spacing: 0.2em;
+  }
+
+  // Intro 2 right
+  .intro-2-right {    
+    height: $intro2Height;
+    width: $intro2Width;
+
+    background-color: $bgColorBlack;
+
+    position: absolute;
+    right: 0;
+    
+  }
+  .intro-2-bg {
+    height: $intro2Height;
+    width: $intro2Width;
+
+    background-image: url(../img/bg.png);
+    background-position-x: center;
+
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .intro-2-bg img {
+    height: $intro2Height;
+    opacity: 0.35;
+  }
+
+  // intro 2 pattern
+
+  .intro-2-pattern img {
+    width: $intro1TextWidth/1.3;
+    position: absolute;
+    left: 0;
+
+    margin-top: $standardPaddingLeft*2.5;
+
+    opacity: 0.35;
+  }
+
+  // intro 2 image
+  .intro-2-img {
+    position: absolute;
+    margin-top: $standardPaddingLeft*2.5;
+    left: $standardPaddingLeft*2;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  .intro-2-img img {
+    width: $intro1Width;
+
+  }
+
+  .intro-2-img-footer {
+    position: absolute;
+
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .intro-2-img-footer-title {
+    margin-left: $standardHeight/2;
+    margin-bottom: $standardHeight/2;
+
+    @include fontDisplay(transparent, $fontSubHeading);
+    background: -webkit-linear-gradient(200deg, rgb(165, 140, 98) -6%, rgb(243, 220, 178) 55%, rgb(167, 141, 97) 105%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .intro-2-img-page {
+    @include fontRegular(white, $fontText);
+  }
+  .intro-2-img-page .page-bar {
+    background-color: white;
+  }
+
+  // img page numbers
   .intro-img-page {
     display: flex;
     align-items: center;
@@ -274,9 +415,7 @@ a {
 
   .intro-img-page .page-bar {
     height: 0.2em;
-    width: $standardHeight;
-    
-    background-color: black;
+    width: $standardHeight;    
   }
 
   

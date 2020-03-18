@@ -7,14 +7,19 @@
 
 // COLOR-VARIABLES
 $bgColor: #3D3D3D;
-$bgColorDark: #212121;
-$bgColorBlack: #141414;
+
+$bgFooterLeft: #393939;
+$bgColorMiddle: #212121;
+$bgColorRight: #141414;
 
 $bgColorSemiBlack: #2d2d2d;
 
-
-
+$bgGray: #9f9f9f;
 $mainYellow: #C09F63;
+
+$fontGrayColor1: #b3b3b3;
+$fontGrayColor2: #9c9c9c;
+$fontGrayColor3: #5f5f5f;
 
 
 // SIZE-VARIABLES
@@ -22,13 +27,12 @@ $standardHeight: 3.3vw;
 $standardSectionHeight: calc(42vw + 30px);
 
 $standardPaddingLeft: 8vw;
-$standardWordSpacing: 0.2em;
+$standardWordSpacing: 0.15em;
 $standardLineHeight: 2em;
 
-$headerHeightPC: calc(6vw + 6px);
-$headerHeightMobile: 3vw;
+$headerHeight: calc(5.5vw + 6px);
 
-$intro1Height: calc(30vw + 50px);
+$intro1Height: calc(30vw + 75px);
 $intro1Width: 65vw;
 $intro1TextWidth: 28vw;
 
@@ -39,10 +43,15 @@ $intro1ImgHeight: calc(35vw + 100px);
 $intro2Width: 25vw;
 $intro2TextWidth: $intro1Width - $standardPaddingLeft;
 
-$infoImgHeight: calc(30vw + 100px);
+$infoImgHeight: 38vw;
 
 $othersImgWidth: 26.5vw;
 $othersBodyWidth: 100vw - 2*$standardPaddingLeft;
+
+$footerHeight: calc(38vw + 100px);
+$footerStandardPadding: 3.5vw;
+$footerTopPadding: 5vw;
+$footerLogoHeight: 5.5vw;
 
 
 // FONT_SIZE
@@ -53,8 +62,10 @@ $fontDisplaySubHeading: 1.5vw;
 $fontHeading: 2.7vw;
 $fontHeading2: 3.3vw;
 
-$fontTextHeader: calc(0.6vw + 4px);
+$fontTextHeader: calc(0.8vw + 2px);
 $fontText: calc(0.7vw + 4px);
+
+
 
 
 
@@ -88,11 +99,16 @@ $fontText: calc(0.7vw + 4px);
 }
 
 // GENERAL 
+
 html, body {
   margin: 0;
   padding: 0;
 
   overflow-x: hidden;
+}
+
+body> .footer {
+  overflow: hidden;
 }
 
 a, button {
@@ -101,19 +117,66 @@ a, button {
   color: inherit
 }
 
-a:active, button:active {
-  outline: none;
+a:hover, button:hover {
+  opacity: 0.75;
+  animation: hoverFade 0.4s ease-in;
 }
 
-@media only screen and (min-width: 800px) { // for pc
+@keyframes hoverFade {
+  0% {opacity: inherit;}
+  100% {opacity: 0.75;}
+}
+
+@-webkit-keyframes hoverFade {
+  0% {opacity: inherit;}
+  100% {opacity: 0.75;}
+}
+
+a:active, button:active {
+  outline: none;
+  opacity: 0.65;
+
+}
+
+textarea {
+  resize: none;
+}
+
+input:focus, textarea:focus {
+  outline: none
+}
+
+// ANIMATION
+
+@keyframes navDown {
+  0% {top: -350px} 100% {top: 0px}
+}
+
+@-webkit-keyframes navDown {
+  0% {top: -350px} 100% {top: 0px}
+}
+
+@keyframes navUp {
+  0% {top: 0px} 100% {top: -350px}
+}
+
+@-webkit-keyframes navUp {
+  0% {top: 0px} 100% {top: -350px}
+}
+
+
+
+// FOR PC
   
   .header {
-    height: $headerHeightPC;
+    height: $headerHeight;
     width: 100%;
 
     background-color: $bgColor;
+    box-shadow: 0 8px 10px -6px rgba(0,0,0,0.2);
 
-    position: absolute;    
+    position: absolute; 
+    z-index: 10;   
     left: 0px;
     top: 0px;
     
@@ -125,7 +188,7 @@ a:active, button:active {
 
   // HEADER logo
   .header-logo {
-    height: $headerHeightPC;
+    height: $headerHeight;
     width: 8vw;
 
     display: flex;
@@ -140,7 +203,7 @@ a:active, button:active {
 
   // HEADER nav
   .header-navigation {
-    height: $headerHeightPC;
+    height: $headerHeight;
     width: 80vw;
 
     display: flex;
@@ -149,8 +212,8 @@ a:active, button:active {
 
   }
   .header-navigation a {
-    height: $headerHeightPC;
-    @include fontRegular(white, $fontTextHeader);
+    height: $headerHeight;
+    @include fontRegular(#ffffff, $fontTextHeader);
 
     display: flex;
     align-items: center;
@@ -160,15 +223,15 @@ a:active, button:active {
   // HEADER languages
 
   .header-languages {
-    height: $headerHeightPC;
+    height: $headerHeight;
     width: 8vw;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
   }
 
-  .header-languages div {
-    @include fontRegular(white, $fontTextHeader)
+  .header-languages>div {
+    @include fontRegular(#ffffff, $fontTextHeader)
   }
 
 
@@ -183,7 +246,16 @@ a:active, button:active {
     background-position-x: center;
     background-position-y: center;
 
-  
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .home-content {
+    height: 100%;
+    width: 100%;
+
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -195,13 +267,13 @@ a:active, button:active {
   }
 
   .home-title {
-    @include fontDisplay(white, $fontHeading);
+    @include fontDisplay(#ffffff, $fontHeading);
     text-transform: uppercase;
   }
   .home-link {
     margin-top: $standardHeight;
     margin-bottom: $standardHeight;
-    @include fontBold(white, $fontTextHeader);
+    @include fontBold(#ffffff, $fontTextHeader);
     text-transform: uppercase;
   }
   
@@ -209,8 +281,8 @@ a:active, button:active {
   .intro-1 {
     min-height: 100vh;
     width: 100vw;
-    // max-width: 100vw;
 
+    margin-bottom: calc(-35vw - 100px); // substract length of (the img) $intro1ImgHeight
   }
   .intro-1-upper {
     height: $intro1Height;
@@ -240,7 +312,7 @@ a:active, button:active {
 
   .sub-title {
     @include fontBold(transparent, $fontSubHeading);
-    background: -webkit-linear-gradient(200deg, #A5864F -6%, #EFCA87 55%, #A0814A 105%);
+    background: -webkit-linear-gradient(0deg, #A5864F -6%, #EFCA87 55%, #A0814A 105%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -253,7 +325,7 @@ a:active, button:active {
     margin-top: $standardHeight/4;
     margin-bottom: $standardHeight;
 
-    @include fontDisplay(white, $fontHeading);
+    @include fontDisplay(#ffffff, $fontHeading);
   }
 
   .intro-1-upper-text {
@@ -261,7 +333,7 @@ a:active, button:active {
     z-index: 1;
     margin-top: $standardHeight;
 
-    @include fontSemiBold(white, $fontText);
+    @include fontSemiBold(#ffffff, $fontText);
     text-align: justify;
     line-height: $standardLineHeight;
     word-spacing: $standardWordSpacing;
@@ -296,37 +368,35 @@ a:active, button:active {
   }
 
   .intro-1-lower-img {
-    width: $intro1ImgWidth;
-    height: $intro1ImgHeight;
+    // width: $intro1ImgWidth;
+    // height: $intro1ImgHeight;
 
-    background-image: url('../img/intro1.png');
-    background-repeat: no-repeat;
-    background-size: cover;
+    // background-image: url('../img/intro1.png');
+    // background-repeat: no-repeat;
+    // background-size: cover;
 
-    position: absolute;
-    right: 0vw;
-    top: $intro1ImgTop;
+    position: relative;
+    right: -35vw;;
+    bottom: $intro1ImgHeight; 
   }
+
+  .intro-1-lower-img img {
+    height: $intro1ImgHeight;
+  }
+
+
   // INTRO 2
   .intro-2 {
     width: 100%;
     margin-top: $standardPaddingLeft;
 
+    position: relative;
+    z-index: 0;
     display: flex;
   }
 
   .intro-2-left {
     margin-left: $standardPaddingLeft;
-  }
-
-  .intro-2-text-con {
-    width: $intro2TextWidth;
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .intro-2-text-con .bar-vertical {
-    width: 1.2vw;
   }
 
   .intro-2-title {
@@ -336,14 +406,36 @@ a:active, button:active {
     @include fontDisplay(black, $fontHeading2);
   }
 
+  .intro-2-text-con {
+    display: flex;
+  }
+
   .intro-2-text {
+    width: $intro2TextWidth;
     margin-left: $standardHeight/2;
     
-    @include fontRegular(black, $fontText);
+    @include fontRegular(black, $fontTextHeader);
     text-align: justify;
     line-height: $standardLineHeight;
     word-spacing: $standardWordSpacing;
   }
+
+
+  // intro 2 pattern
+
+  .intro-2-pattern img {
+    width: $intro1TextWidth/1.3;
+
+    left: -$standardPaddingLeft;
+    top:  -40vw;
+    margin-bottom: -40vw;
+
+    position: relative;
+    z-index: -1;
+  
+    opacity: 0.35;
+  }
+
 
   // Intro 2 right
   .intro-2-right {    
@@ -352,8 +444,8 @@ a:active, button:active {
 
     background-color: $bgColorSemiBlack;
 
-    position: absolute;
-    right: 0;
+    position: relative;
+    right: -1vw;
     
   }
   .intro-2-bg {
@@ -362,6 +454,8 @@ a:active, button:active {
 
     background-image: url(../img/bg.png);
     background-position-x: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 
     display: flex;
     justify-content: flex-end;
@@ -372,24 +466,14 @@ a:active, button:active {
     opacity: 0.35;
   }
 
-  // intro 2 pattern
 
-  .intro-2-pattern img {
-    width: $intro1TextWidth/1.3;
-    margin-top: - $standardHeight;
-    margin-left: -$standardPaddingLeft;
-
-    position: relative;
-    z-index: -1;
-
-    opacity: 0.35;
-  }
 
   // intro 2 image
   .intro-2-img {
-    position: absolute;
-    margin-top: $standardPaddingLeft*2.5;
-    left: $standardPaddingLeft*2;
+    position: relative;
+    top: - $standardPaddingLeft;
+    left: $standardPaddingLeft;
+    z-index: 5;
 
     display: flex;
     flex-direction: column;
@@ -397,21 +481,22 @@ a:active, button:active {
   }
   .intro-2-img img {
     width: $intro1Width;
-
   }
+
 
   .intro-2-img-footer {
     width: 100%;
 
-    position: absolute;
+    position: relative;
 
     display: flex;
     justify-content: space-between;
   }
 
   .intro-2-img-footer-title {
-    margin-left: $standardHeight/2;
-    margin-bottom: $standardHeight/2;
+    position: relative;
+    left: $standardHeight/2;
+    bottom: $standardHeight;
 
     @include fontDisplay(transparent, $fontSubHeading);
     background: -webkit-linear-gradient(200deg, rgb(165, 140, 98) -6%, rgb(243, 220, 178) 55%, rgb(167, 141, 97) 105%);
@@ -424,13 +509,14 @@ a:active, button:active {
   }
 
   .intro-2-img-page {
-    margin-right: $standardHeight/2;
-    margin-bottom: $standardHeight/2;
+    position: relative;
+    right: $standardHeight/2;
+    bottom: $standardHeight;
 
-    @include fontRegular(white, $fontText);
+    @include fontRegular(#ffffff, $fontText);
   }
   .intro-2-img-page .page-bar {
-    background-color: white;
+    background-color: #ffffff;
   }
 
 
@@ -443,7 +529,7 @@ a:active, button:active {
     background-color: $bgColorSemiBlack;
     
     position: relative;
-    z-index: -1;
+    z-index: 2;
   }
 
   .info-bg {
@@ -451,7 +537,7 @@ a:active, button:active {
     width: 100vw;
 
     position: relative;
-    z-index: 0;
+    z-index: 3;
 
     background-image: url(../img/bg.png);
     background-size: cover;
@@ -467,7 +553,7 @@ a:active, button:active {
     top: - $standardHeight*3;
 
     position: absolute;
-    z-index: 1;
+    z-index: 4;
 
     display: flex;
     flex-direction: column;
@@ -481,46 +567,72 @@ a:active, button:active {
   // Info's body
 
   .info-body {
-    height: $infoImgHeight;
     width: 100vw;
 
     position: relative;
-    z-index: 2;
+    z-index: 5;
 
     display: flex;
-    align-items: center;
+    align-items: flex-end;
   }
   
   .info-img {
-    height: $infoImgHeight;
-    width: 65%;
+    // height: $infoImgHeight;
 
-    background-image: url(../img/info.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+    // background-image: url(../img/info.png);
+    // background-repeat: no-repeat;
+    // background-size: cover;
+    // background-position: center;
 
-    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
   }
 
+  .info-img img {
+    height: $infoImgHeight;
+    width: auto;
+
+    position: relative;
+    z-index: 1;
+
+  }
+  .info-img-page {
+    position: absolute;
+    z-index: 2;
+
+    padding-left: $standardHeight/1.5;
+    padding-bottom: $standardHeight/1.5;
+
+    @include fontRegular(#ffffff, $fontText);
+  }
+
+  .info-img-page .page-bar {
+    background-color: #ffffff;
+  }
+
+  // Info Text
+
   .info-text {
-    width: 25%;
     margin-left: $standardPaddingLeft/3;
     margin-right: $standardPaddingLeft;
+    margin-bottom: $standardPaddingLeft/2;
 
     position: relative;
 
-    @include fontRegular(white, $fontText);
+    @include fontRegular(#ffffff, $fontTextHeader);
     word-spacing: $standardWordSpacing;
-    line-height: $standardLineHeight*0.8;
+    line-height: $standardLineHeight;
   }
 
   .info-link {
     position: relative;
-    z-index: 4;
+    z-index: 6;
 
-    font-size: $fontTextHeader !important;
-    letter-spacing: 0em !important;
+    font-size: $fontTextHeader;
+    letter-spacing: 0em;
   }
 
   // Other Projects (others)
@@ -584,29 +696,31 @@ a:active, button:active {
   .others-footer {
     margin-top: $standardHeight;
     display: flex;
+    align-items: center;
   }
 
   .others-footer .button-side-bar {
     width: 0.1vw;
-    height: $standardHeight*0.8;
+    height: $standardHeight*0.65;
 
     background-color: $mainYellow;
   }
 
   .others-footer-link {
-    width: $standardHeight*3;
     height: $standardHeight*0.8;
+    width: $standardHeight*3;
+
     border: none;
     background: linear-gradient(269.67deg, #A5864F -6.17%, #EFCA87 53.9%, #A0814A 103.47%);
 
-    margin-left: $standardHeight*0.1;
-    margin-right: $standardHeight*0.1;
+    margin-left: $standardHeight*0.07;
+    margin-right: $standardHeight*0.07;
 
     display: flex;
     justify-content: center;
     align-items: center;
 
-    @include fontBold(white, $fontTextHeader)
+    @include fontSemiBold(#ffffff, $fontTextHeader)
   }
 
   // SERVICE
@@ -634,7 +748,7 @@ a:active, button:active {
   .service-body-title {
     margin-bottom : $standardHeight/6;
 
-    @include fontBold(white, $fontText);
+    @include fontSemiBold(#ffffff, $fontText);
 
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -656,7 +770,7 @@ a:active, button:active {
 
   // FOOTER
   .footer {
-    height: $standardSectionHeight;
+    height: $footerHeight;
 
     margin-top: $standardPaddingLeft;
 
@@ -664,19 +778,216 @@ a:active, button:active {
     grid-template-columns: 32vw 58vw 10vw;
   }
 
+  // footer left
   .footer-left {
-    background-color: $bgColor;
+    background-color: $bgFooterLeft;
+
+    padding: $footerTopPadding*0.85;
+    padding-top: $footerTopPadding;
+    padding-bottom: $footerStandardPadding;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+
+  .footer-left-title {
+    background: -webkit-linear-gradient(269.33deg, #D0B17A -6.17%, #FFDFA6 53.9%, #D0B17A 103.47%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    margin-bottom: $standardHeight*0.3;
+
+    @include fontDisplay(transparent, $fontSubHeading);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .footer-left-text {
+    width: 85%;
+    padding-bottom: $standardHeight;
+
+    @include fontRegular($bgGray, $fontText);
+  }
+
+  .footer-left .footer-left-form>div {
+    margin-bottom: $standardHeight*0.7;
+
+    display: flex;
+    
+    @include fontRegular($fontGrayColor1, $fontText);
+    line-height: 1.5em;
+
+  }
+
+
+  .footer-left .footer-left-form>div>input, .footer-left .footer-left-form textarea {
+    width: 100%;
+
+    background: none;
+    border: none;
+    border-bottom: 1px solid #545454;
+
+    padding-bottom: 0.5em;
+    
+    @include fontRegular(#ffffff, $fontText)
+  }
+
+  .footer-left .footer-left-form>div>input:focus, .footer-left .footer-left-form textarea:focus {
+    border-bottom: 1px solid $mainYellow;
+  }
+
+  .footer-left .footer-left-form>div>input::placeholder, .footer-left-form-textarea-text {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    color: $fontGrayColor1;
+  }
+
+
+  // left footer form textarea 
+  .footer-left-form-textarea-con {
+    flex-direction: column; 
+  }
+  .footer-left-form-textarea-text {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  // left footer button
+
+  .footer-left-button-con button {
+    height: $standardHeight*0.8;
+    width: $standardHeight*3;
+
+    border: none;
+    background-color: #ffffff;
+
+    margin-left: $standardHeight*0.07;
+    margin-right: $standardHeight*0.07;
+    
+    @include fontSemiBold(black, $fontText)
+  }
+
+  .footer-left-button-con {
+    display: flex;
+    align-items: center;
+  }
+
+  .footer-left-button-con .button-side-bar {
+    width: 0.1vw;
+    height: $standardHeight*0.65;
+
+    background-color: #ffffff;
   }
 
   .footer-middle {
-    background-color: $bgColorDark;
+    background-color: $bgColorMiddle;
+    padding: $footerStandardPadding;
+    padding-right: $footerTopPadding;
+    padding-top: $footerTopPadding;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
+
+  .footer-logo img {
+    height: $footerLogoHeight;
+  }
+
+  .footer-info-title {
+    @include fontSemiBold(#ffffff, $fontText);
+    text-transform: uppercase;
+
+    margin-bottom: 1.5em;
+  }
+
+  .footer-info-content {
+    @include fontRegular($fontGrayColor2, $fontText);
+    line-height: 2em;
+  }
+
+  .footer-nav {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .footer-nav-block {
+    display: flex;
+    flex-direction: column;
+  } 
+
+  .footer-nav-block-heading {
+    @include fontRegular(#ffffff, $fontText);
+    text-transform: uppercase;
+
+    margin-bottom: 1.5em;
+  }
+
+  .footer-nav-block-links {
+    display: flex;
+    flex-direction: column;
+
+    @include fontRegular($fontGrayColor2, $fontText);
+    line-height: 2em;
+  }
+
+  .footer-copyright {
+    @include fontRegular($fontGrayColor2, $fontText);
+  }
+
+  // footer right
 
   .footer-right {
-    background-color: $bgColorBlack;
+    background-color: $bgColorRight;
+    padding-bottom: $footerStandardPadding;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
   }
 
+  .footer-right-text-con {
+    margin-bottom: $standardHeight*1.5;
+  }
+
+  // handle vertical line rotate
+  .footer-right p {
+    width: 20vw;
+
+    @include fontSemiBold($fontGrayColor3, $fontText);
+    text-align: right;
+    transform: rotate(-90deg)
+  }
+
+  .footer-right-logos {
+    height: $standardHeight*3;
+    color: #ffffff;
+    
+    position: relative;
+    z-index: 10;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .fa-wifi {
+    transform: rotate(45deg);
+    margin-left: - 0.25em;
+  }
+
+  .footer-right-logos i {
+    font-size: $fontTextHeader;
+  }
+
+
   // COMPONENTS
+
 
   // img page numbers
   .img-page {
@@ -684,7 +995,7 @@ a:active, button:active {
     align-items: center;
   }
 
-  .img-page div {
+  .img-page>div {
     margin-right: 1em;
   }
 
@@ -693,8 +1004,10 @@ a:active, button:active {
     width: $standardHeight;    
   }
 
+
+
   
-  // BAR
+  // bars
   .bar-horizontal {
     width: 15vw;
     height: 0.3vw;
@@ -703,42 +1016,652 @@ a:active, button:active {
 
   .bar-vertical {
     width: 0.35vw;
-    height: 17vw;
+    height: 20vw;
     background-color: $mainYellow;
   }
-}
 
+  // hide elements 
 
-
-
-
-@media only screen and (max-width: 800px) { // smartphone and ipad, tablet
-
-  // handle landscape rotate
-  @media (min-aspect-ratio: 3/2) {
-    .header {
-      width: 100vw;
-      height: $headerHeightMobile;
-      background-color: #000000;
-
-      position: absolute;
-      left: 0px;
-      top: 0px;
-    }
-    
+  .hamburger {
+    display: none;
   }
 
-  // handle vertical rotate
-  @media (max-aspect-ratio: 3/2) {
-    .header {
-      width: 100vw;
-      height: $headerHeightMobile;
-      background-color: #000000;
 
-      position: absolute;
-      left: 0px;
-      top: 0px;
+
+
+@media only screen and (max-width: 700px) { // smartphone and ipad, tablet
+  $fontHeadingHomeMobile: calc(8vw + 5px);
+  $fontHeading1Mobile: calc(6vw + 5px);
+
+  $fontSubHeadingMobile: calc(3vw + 5px);
+
+  $fontTextMobile: calc(2vw + 5px);
+  
+  $marginTextMobile: 6vw;
+  $standardMarginMobile: 8vw;  
+  $headerHeightMobile: 16vw;
+
+  @keyframes navDown {
+    0% {top: -200px} 100% {top: 0px}
+  }
+  
+  @-webkit-keyframes navDown {
+    0% {top: -200px} 100% {top: 0px}
+  }
+  
+  @keyframes navUp {
+    0% {top: 0px} 100% {top: -200px}
+  }
+  
+  @-webkit-keyframes navUp {
+    0% {top: 0px} 100% {top: -200px}
+  }
+
+  // navMobile appear
+  @keyframes navAppear {
+    0% {background-color: transparent;}
+    100% {background-color: $bgColor;}
+  }
+  @-webkit-keyframes navAppear {
+    0% {background-color: transparent;}
+    100% {background-color: $bgColor;}
+  }
+  @keyframes navDisappear {
+    0% {background-color: $bgColor;}
+    100% {background-color: transparent;}
+  }
+  @-webkit-keyframes navDisappear {
+    0% {background-color: $bgColor;}
+    100% {background-color: transparent;}
+  }
+
+  // toggle nav bar button
+
+
+  .header {
+    width: 100vw;
+    height: $headerHeightMobile;
+    background-color: $bgColor;
+  }
+
+  .header-logo {
+    height: $headerHeightMobile;
+    width: 20vw;
+  }
+
+  .hamburger {
+    height: $headerHeightMobile;
+    width: 20vw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: $fontSubHeadingMobile;
+    color: #dadada;
+  }
+
+  .header .header-navigation, .header .header-languages {
+    display: none;
+  }
+
+  // nav mobile
+
+  #nav-mobile {
+    width: 100vw;
+    height: 100vh;
+
+    background-color: transparent;
     
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    z-index: 100;
+  }
+
+  .nav-mobile-cross-con {
+    width: 100vw;
+
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .nav-mobile-list {
+    display: flex;
+    flex-direction: column;
+
+    @include fontRegular(#ffffff, $fontSubHeadingMobile);
+    text-transform: uppercase;
+
+    text-align: center
+  }
+
+  .nav-mobile-list a {
+    margin-top: $standardMarginMobile;
+  }
+
+
+  // home (mobile)
+
+  .home {
+    height: 150vw;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .home-content {
+    background-color: rgba(0, 0, 0, 0.3);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .home-logo img {
+    height: $standardHeight*3;
+  }
+
+  .home-title {
+    @include fontDisplay(#ffffff, $fontHeadingHomeMobile);
+    text-transform: uppercase;
+
+    text-align: center;
+
+  }
+  .home-link {
+    margin-top: $standardHeight;
+    margin-bottom: $standardHeight;
+    @include fontSemiBold(#ffffff, $fontTextMobile);
+    text-transform: uppercase;
+  }
+
+  .intro-1 {
+    height: auto;
+    margin-bottom: 0;
+  }
+
+  .intro-1-upper {
+    height: 90vw;
+    width: 100vw;
+  }
+
+  .intro-1-upper-bg {
+    height: 90vw;
+    width: 100vw;
+  }
+
+  .intro-1-pattern img {
+    width: 25vw;
+  }
+
+  .intro-1-upper-text-con {
+    width: 100%;
+    margin: $marginTextMobile;
+  }
+
+  .sub-title {
+    font-size: $fontSubHeadingMobile;
+
+  }
+
+  .intro-1-title {
+    font-size: $fontHeading1Mobile;
+
+  }
+
+  .intro-1-upper-text {
+    font-size: $fontTextMobile;
+  }
+
+  .intro-1-lower {
+    margin: 0;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .intro-1-lower-img {
+    width: 100vw;
+    position: static;
+  }
+
+  .intro-1-lower-img img {
+    width: 100%;
+  }
+
+  .intro-1-lower {
+    width: 100vw;
+  }
+
+  .intro-1-lower-text {
+    width: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+    
+    font-size: $fontTextMobile;
+  }
+
+  .intro-1-lower-text-content, .intro-1-img-page {
+    padding-left: $marginTextMobile;
+    padding-right: $marginTextMobile;
+  } 
+
+  // Intro-2
+  .intro-2 {
+    margin-top: 0;
+  }
+
+  .intro-2-left {
+    margin: $marginTextMobile;
+  }
+  .intro-2-right {
+    display: none;
+  }
+
+  // intro-2 left
+  .intro-2-title {
+    font-size: $fontHeading1Mobile;
+  }
+
+  .intro-2-text-con .bar-vertical {
+    display: none;
+  }
+
+  .intro-2-text {
+    width: 100%;
+    margin-left: 0;
+
+    font-size: $fontTextMobile;
+  }
+
+  .intro-2-pattern img {
+    width: 30vw;
+
+    left: -10vw;;
+    top: -10vw;
+
+    margin-top: -60vw;
+    opacity: 0.8;
+  }
+
+  .intro-2-content {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .intro-2-img {
+    margin-top: $marginTextMobile;
+    position: relative;
+    left: 0;
+  }
+  .intro-2-img img {
+    width: 100%;
+  }
+
+  // intro 2 img footer
+
+  .intro-2-img-footer {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .intro-2-img-footer-title, .intro-2-img-page {
+    font-size: $fontTextMobile
+  }
+
+  .intro-2-img-page {
+    position: absolute;
+    bottom: $standardMarginMobile;
+    right: 0;
+  }
+
+  .intro-2-img-footer-title {  
+    top: $marginTextMobile;
+    bottom: 0;
+    left: 0;
+    
+    font-size: $fontSubHeadingMobile;
+  }
+
+  // INFO
+  .info {
+    margin-top: $standardMarginMobile*4;
+    height: auto;
+  }
+
+  .info-bg {
+    height: auto;
+  }
+
+  .info-header {
+    top: - $standardMarginMobile*3;
+  }
+
+  .info-body {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .info-img img {
+    position: relative;
+    width: 100%;
+    height: auto;
+  }
+
+  .info-img-page {
+    font-size: $fontTextMobile;
+  }
+  
+  .info-text {
+    margin: $marginTextMobile;
+    text-align: center;
+
+    font-size: $fontTextMobile;
+  }
+
+  .info-text .info-link {
+    font-size: $fontSubHeadingMobile;
+
+  }
+
+  // others - cac du an khac 
+  .others {
+    margin-top: $standardMarginMobile*2;
+    padding: $marginTextMobile
+  }
+  .others-header .bar-vertical {
+    height: 8vw;
+  }
+  .others-body {
+    margin-left: $marginTextMobile;
+    margin-right: $marginTextMobile;
+
+    display: flex;
+    flex-direction: column;
+  }
+
+
+  .others-body .others-body-block img {
+    width: 100%;
+    margin: 0;
+    margin-bottom: $marginTextMobile/3;
+  }
+
+  .others-body-block {
+    text-align: center;
+  }
+
+  .others-body-block-title {
+    font-size: $fontSubHeadingMobile;
+    margin-bottom: $marginTextMobile/5;
+  }
+
+  .others-body-block-sub-title {
+    font-size: $fontTextMobile;
+    margin-bottom: $marginTextMobile/5;
+  }
+
+  .others-body-block-description {
+    font-size: $fontTextMobile;
+    margin-bottom: $marginTextMobile*1.5;
+  }
+  
+  .others-footer-link {
+    height: $standardMarginMobile*1.2;
+    width: $standardMarginMobile*5;
+
+    margin-left: $standardMarginMobile*0.1;
+    margin-right: $standardMarginMobile*0.1;
+
+    font-size: $fontTextMobile;
+  }
+
+  .others-footer .button-side-bar {
+    height: $standardMarginMobile;
+    width: 0.5vw;
+
+  }
+
+  // service
+  .service {
+    margin-top: $standardMarginMobile*3;
+  }
+  .service-body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .service-body .service-body-block {
+    width: 100vw;
+    height: 80vw;
+  }
+
+  .service-body-title {
+    font-size: $fontTextMobile;
+  }
+  .service-body-link {
+    font-size: $fontTextMobile;
+    margin-bottom: $marginTextMobile;
+
+  }
+
+
+  // footer mobile 
+
+
+  .footer {
+    height: auto;
+
+    display: flex;
+    flex-direction: column;
+    margin-top: 0;
+  }
+
+  .footer div {
+    font-size: $fontTextMobile;
+    height: auto;
+  }
+
+  .footer .footer-left {
+    height: 150vw;
+
+    padding: $marginTextMobile;
+  }
+
+  .footer .footer-left .footer-left-title {
+    font-size: $fontHeading1Mobile
+  }
+
+  .footer .footer-left .footer-left-form input, .footer .footer-left .footer-left-form textarea {
+    font-size: $fontSubHeadingMobile;
+    margin-bottom: $standardMarginMobile;
+
+  }
+
+  .footer .footer-left .footer-left-button-con button {
+    height: $standardMarginMobile*1.2;
+    width: $standardMarginMobile*5;
+
+    margin-left: $standardMarginMobile*0.1;
+    margin-right: $standardMarginMobile*0.1;
+
+    font-size: $fontTextMobile;
+  }
+
+  .footer-left-button-con .button-side-bar {
+    height: $standardMarginMobile;
+    width: 0.5vw;
+  }
+
+  .footer-left-button-con {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  // footer-middle
+
+  .footer-middle {
+    padding: $marginTextMobile/2
+  }
+
+  .footer .footer-middle .footer-logo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: $marginTextMobile;
+    margin-top: $marginTextMobile
+  }
+
+  .footer .footer-middle .footer-logo img {
+    // width: min-content;
+    height: $standardMarginMobile*1.5;
+  }
+
+
+  .footer .footer-info {
+    margin-bottom: $standardMarginMobile*1.5
+  }
+
+  .footer-middle .footer-info .footer-info-title {
+    font-size: $fontSubHeadingMobile;
+    text-align: center;
+  }
+
+  .footer .footer-middle .footer-info-content {
+    text-align: center;
+  }
+
+  .footer .footer-middle .footer-info-contacts {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  // footer-middle .footer-nav
+
+  .footer-middle .footer-nav {
+    width: 100%;
+    margin: 0px;
+
+    display: flex;
+    flex-direction: column;
+  }
+
+  .footer-middle .footer-nav-block {
+    margin-bottom: $standardMarginMobile;
+  }
+
+  .footer-middle .footer-nav-block .footer-nav-block-heading {
+    text-align: center
+  }
+
+  .footer-middle .footer-nav-block .footer-nav-block-links {
+    display: grid;
+    grid-template-columns: auto auto;
+  }
+
+
+  .footer-middle .footer-nav-block .footer-nav-block-links a {
+    height: 2em;
+    margin-bottom: $marginTextMobile*0.3;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    text-align: center;
+    line-height: normal;
+    font-size: 3vw;
+  }
+
+  // footer-middle copyright line
+
+  .footer-middle .footer-copyright {
+    margin-top: $standardMarginMobile;
+
+    color: $fontGrayColor1;
+    text-align: center;
+  }
+
+  // footer-right (last block of footer)
+
+  .footer-right {
+    padding: $marginTextMobile/2;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .footer-right-text-con {
+    width: 50vw;
+    margin: 0px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+
+  .footer-right .footer-right-text-con p {
+    width: 100%;
+    transform: none;
+    
+    text-align: center;
+    font-size: $fontTextMobile;
+
+  }
+
+  .footer-right-logos {
+    width: 50vw;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .footer-right-logos i {
+    font-size: $fontSubHeadingMobile;
+  } 
+
+
+
+
+
+
+
+
+  
+
+
+
+  // components
+
+  .bar-vertical {
+    width: 1vw;
+  }
+
+  .bar-horizontal {
+    height: 1vw;
+    width: 20vw;
+  }
+
+
+  // handle header's height horizontal small device
+  @media only screen and (min-aspect-ratio: 3/2) {
+    .header {
+      height: 12vw;
+    }
+
+    .header-logo {
+      height: 12vw;
+      width: 12vw
     }
   }
 

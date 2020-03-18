@@ -5,13 +5,52 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600;700&display=swap" rel="stylesheet">
 
-
   <link href="https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap" rel="stylesheet">
   <link href="./css/main.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/9324ef9cbc.js" crossorigin="anonymous"></script>
+
   <title>Document</title>
 </head>
-<body>
+<body>  
+  <div id="nav-mobile" style="display: none">
+    <div onclick="handleNavOff()" class="nav-mobile-cross-con">
+      <div class="hamburger"><i class="fas fa-times"></i></div>
+    </div>
+    <div class="nav-mobile-list">
+      <a href="#">TRANG CHỦ</a>
+      <a href="#">GIỚI THIỆU</a>
+      <a>DỊCH VỤ</a>
+      <a>KHÁCH HÀNG</a>
+      <a>ĐỐI TÁC</a>
+      <a>TIN TỨC</a>
+      <a>THƯ VIỆN ẢNH</a>
+      <a>LIÊN HỆ</a>
+    </div>
 
+  </div>
+  <!-- Nav bar toggle -->
+  <div id="header" class="header" style="top: 0px; position: fixed; z-index: 11;">
+    <div class="header-logo"><img src="./img/logo.png"/></div>
+    <div class="header-navigation">
+      <a href="#">TRANG CHỦ</a>
+      <a href="#">GIỚI THIỆU</a>
+      <a>DỊCH VỤ</a>
+      <a>KHÁCH HÀNG</a>
+      <a>ĐỐI TÁC</a>
+      <a>TIN TỨC</a>
+      <a>THƯ VIỆN ẢNH</a>
+      <a>LIÊN HỆ</a>
+    </div>
+    <div class="header-languages">
+      <div style="font-weight: 700">VN</div><div>EN</div>
+    </div>
+
+    <div onclick="handleNavOn()" class="hamburger">
+      <i class="fas fa-bars"></i>
+    </div>
+  </div>
+
+  <!-- -->
   <div class="header">
     <div class="header-logo"><img src="./img/logo.png"/></div>
     <div class="header-navigation">
@@ -27,12 +66,18 @@
     <div class="header-languages">
       <div style="font-weight: 700">VN</div><div>EN</div>
     </div>
+    <div onclick="handleNavOn()" class="hamburger">
+      <i class="fas fa-bars"></i>
+    </div>
   </div>
 
   <div class="home">
-    <div class="home-logo"><img src="./img/home-logo.png"/></div>
-    <div class="home-title">DỰ ÁN UDIC WESTLAKE</div>
-    <div class="home-link">> TRỞ LẠI DANH SÁCH DỰ ÁN</div>
+    <div class="home-content">
+      <div class="home-logo"><img src="./img/home-logo.png"/></div>
+      <div class="home-title">DỰ ÁN UDIC WESTLAKE</div>
+      <div class="home-link">> TRỞ LẠI DANH SÁCH DỰ ÁN</div>
+    </div>
+    
   </div>
 
   <div class="intro-1">
@@ -44,18 +89,21 @@
           <div class="intro-1-title">Cảnh quan tuyệt mỹ</div>
           <div class="bar-horizontal"></div>
           <div class="intro-1-upper-text">UDIC Westlake là tổ hợp gồm 382 căn hộ cao cấp tọa tại mặt đường Võ Chí Công, Hà Nội. Dự án mang tới cho cư dân đẳng cấp nơi an cư lý tưởng, chốn sinh lời vượt trội nhờ những lợi thế từ vị trí, kiến trúc hoà hợp cùng thiên nhiên, sản phẩm tối ưu, tới hệ thống tiện ích cảnh quan đầy đủ và đẳng cấp. </div>
-        </div>
-        
+        </div>  
       </div>
     </div>
     <div class="intro-1-lower">
       <div class="intro-1-lower-text">
-        Kể từ khi đồng hành cùng Chủ đầu tư UDIC, Vland đã tư vấn và đẩy mạnh thương hiệu dự án trên thị trường khiến khách hàng nhận biết mạnh mẽ về dự án. Cùng với đó, chiến lược kinh doanh, các hoạt động marketing truyền thông VLand đề xuất và sự quyết liệt trong quá trình triển khai bán hàng đã tạo ra kết quả kinh doanh ấn tượng cho dự án so với giai đoạn trước đó.
+        <div class="intro-1-lower-text-content">Kể từ khi đồng hành cùng Chủ đầu tư UDIC, Vland đã tư vấn và đẩy mạnh thương hiệu dự án trên thị trường khiến khách hàng nhận biết mạnh mẽ về dự án. Cùng với đó, chiến lược kinh doanh, các hoạt động marketing truyền thông VLand đề xuất và sự quyết liệt trong quá trình triển khai bán hàng đã tạo ra kết quả kinh doanh ấn tượng cho dự án so với giai đoạn trước đó.</div>
         <br>
         <br>
-        <br><div class="intro-1-img-page img-page"><div style="font-weight: 700;">01</div><div class="page-bar"></div><div>02</div><div>03</div><div>04</div></div>
+        <div class="intro-1-img-page img-page">
+          <div style="font-weight: 700;">01</div><div class="page-bar"></div><div>02</div><div>03</div><div>04</div>
+        </div>
       </div>
-      <div class="intro-1-lower-img"></div>
+      <div class="intro-1-lower-img">
+        <img src="./img/intro1.png"/>
+      </div>
     </div>
   </div>
 
@@ -64,33 +112,35 @@
       <div class="sub-title">HÀNH TRÌNH VLAND</div>
       <div class="intro-2-title">Kiến tạo thành công</div>
 
-      <div class="intro-2-text-con">
-        <div class="bar-vertical"></div>
-        <div class="intro-2-text">
-          Ưu việt đến từ cung cấp các dịch vụ khác biệt, cùng sự thông minh trong việc tuyển chọn đại lý, điều phối bán hàng, Vland đã chinh phục nhiều dự án với quy mô lớn, nhỏ trải khắp Việt Nam. Trong đó, hầu hết các dự án đã hoàn thành 100% chỉ tiêu kinh doanh trong thời gian ngắn, bao gồm đa dạng loại hình sản phẩm: căn hộ, biệt thự, nhà phố thương mại, đất nền,...
+      <div class="intro-2-content">
+        <div class="intro-2-text-con">
+          <div class="bar-vertical"></div>
+          <div class="intro-2-text">
+            Ưu việt đến từ cung cấp các dịch vụ khác biệt, cùng sự thông minh trong việc tuyển chọn đại lý, điều phối bán hàng, Vland đã chinh phục nhiều dự án với quy mô lớn, nhỏ trải khắp Việt Nam. Trong đó, hầu hết các dự án đã hoàn thành 100% chỉ tiêu kinh doanh trong thời gian ngắn, bao gồm đa dạng loại hình sản phẩm: căn hộ, biệt thự, nhà phố thương mại, đất nền,...
+          </div>
+        </div>
+        <div class="intro-2-img">
+          <img src="./img/intro2.png"/>
+          <div class="intro-2-img-footer"> 
+            <div class="intro-2-img-footer-title">Nghiên cứu thị trường</div>
+            <div class="intro-2-img-page img-page">
+              <div style="font-weight: 700;">01</div><div class="page-bar"></div><div>02</div><div>03</div><div>04</div>
+            </div>
+          </div>
+        </div>
+        <div class="intro-2-pattern">
+          <img src="./img/pattern-big.png"/>
         </div>
       </div>
       
-      <div class="intro-2-pattern">
-        <img src="./img/pattern-big.png"/>
-      </div>
+
     </div>
 
     <div class="intro-2-right">
       <div class="intro-2-bg"><img src="./img/pattern.png"></div>
     </div>
 
-    <div class="intro-2-img">
-      <img src="./img/intro2.png"/>
-      <div class="intro-2-img-footer">
-        
-        <div class="intro-2-img-footer-title">Nghiên cứu thị trường</div>
-
-        <div class="intro-2-img-page img-page">
-          <div style="font-weight: 700;">01</div><div class="page-bar"></div><div>02</div><div>03</div><div>04</div>
-        </div>
-      </div>
-    </div>
+    
   </div>
 
   <div class="info">
@@ -104,6 +154,10 @@
 
       <div class="info-body">
         <div class="info-img">
+          <img src="./img/info.png"/>
+          <div class="info-img-page img-page">
+            <div style="font-weight: 700;">01</div><div class="page-bar"></div><div>02</div><div>03</div><div>04</div>
+          </div>
         </div>
         <div class="info-text">
           Chủ đầu tư: Tổng công ty Đầu tư phát triển hạ tầng đô thị UDIC 
@@ -120,8 +174,7 @@
           <br>
           <br>- Khối tháp: 18%
           <br>
-          <br>
-          <br><a href="https://www.facebook.com" class="sub-title info-link">| Xem chi tiết dự án |</a>
+          <br><a target="_blank" href="https://www.facebook.com" class="sub-title info-link">| Xem chi tiết dự án |</a>
         </div>
       </div>
 
@@ -199,22 +252,254 @@
   </div>
 
   <div class="footer">
-    <div class="footer-left">
-      <div class="footer-left-title">BẠN CẦN TƯ VẤN</div>
-      <div class="footer-left-text">Liên hệ V-Land, chúng tôi sẽ liên hệ trả lời bạn trong thời gian sớm nhất!</div>
 
+
+
+    <div class="footer-left">
+      <div class="footer-left-heading">
+        <div class="footer-left-title">BẠN CẦN TƯ VẤN</div>
+        <div class="footer-left-text">Liên hệ V-Land, chúng tôi sẽ liên hệ trả lời bạn trong thời gian sớm nhất!</div>
+      </div>
+    
       <!-- This part we should consider using click or submit form-->
       <!-- Onclick => not reload page, have to use key.event to handle Enter submit on keyboard (if necessary)-->
       <!-- Onsubmit => User can use Enter to submit form, but page will be reloaded-->
 
-      <div class="footer-left-form"></div>
+      <div class="footer-left-form">
+        <div><input placeholder="Họ và tên" maxlength="80"/></div>
+        <div><input placeholder="Email" maxlength="60"/></div>
+        <div><input placeholder="Số điện thoại" maxlength="15"/></div>
+        <div class="footer-left-form-textarea-con">
+          <div class="footer-left-form-textarea-text"><span>Thông tin tư vấn</span><span id="count-char">250 ký tự</span></div>
+          <div><textarea rows="6" maxlength="250" style="width: 100%;"></textarea></div>
+        </div>
+      </div>
       <div class="footer-left-button-con">
-        <button></button>
-        <div class="error-message"></div>
+        <div class="button-side-bar"></div>
+        <button>GỬI</button>
+        <div class="button-side-bar"></div>
+
       </div>
     </div>
-    <div class="footer-middle"></div>
-    <div class="footer-right"></div>
+    <div class="footer-middle">
+
+      <div class="footer-logo">
+        <img src="./img/logo.png"/>
+      </div>
+
+      <div class="footer-info">
+        <div class="footer-info-title">Công ty Cổ phần đầu tư Kinh doanh BĐS V-LanD Việt Nam</div>
+        <div class="footer-info-content">
+          <div><b>A</b>: Tầng 6, toà TNR, 115 Trần Hưng Đạo, Hoàn Kiếm, Hà Nội </div>
+          <div class="footer-info-contacts">
+            <div><b>H</b>: +84 904 211 811 </div>
+            <div><b>E</b>: info@vlandvn.com</div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="footer-nav">
+        <div class="footer-nav-block footer-nav-block-left">
+          <div class="footer-nav-block-heading">GIỚI THIỆU</div>
+          <div class="footer-nav-block-links">
+            <a>Về chúng tôi</a>
+            <a>Sơ đồ tổ chức</a>
+            <a>Giá trị cốt lõi</a>
+            <a>Giải thưởng</a>
+          </div>
+        </div>
+
+        <div class="footer-nav-block">
+          <div class="footer-nav-block-heading">LĨNH VỰC KINH DOANH</div>
+          <div class="footer-nav-block-links">
+            <a>Phát triển & kinh doanh BĐS</a>
+            <a>Truyền thông, tiếp thị dự án BĐS</a>
+            <a>Tư vấn đầu tư BĐS</a>
+            <a>Đầu tư BĐS thứ cấp</a>
+          </div>
+        </div>
+
+        <div class="footer-nav-block">
+          <div class="footer-nav-block-heading">TIN TỨC</div>
+          <div class="footer-nav-block-links">
+            <a>Tin thị trường</a>
+            <a>Tin VLand</a>
+            <a>Văn hoá doanh nghiệp</a>
+            <a>Hoạt động vì cộng đồng</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-copyright">Copyright 2019 V-Land. All right reserved</div>
+    </div>
+    <div class="footer-right">
+      <div class="footer-right-text-con">
+        <p>THEO DÕI CHÚNG TÔI QUA</p>
+
+      </div>
+      <div class="footer-right-logos">
+        <a target="_blank" href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a>
+        <a target="_blank" href="https://www.instagram.com"><i class="fab fa-instagram"></i></a>
+        <a><i class="fab fa-google-plus-g"></i></a>
+        <a><i class="fas fa-wifi"></i></a>
+      </div>
+    </div>
+
   </div>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+
+
+  // handle toggle nav bar on phone
+  let prevScroll = 0;
+  let header = document.getElementById("header")
+
+  $(document).ready(function () {
+    $(window).scroll(function () {
+      let scrollingPos = window.pageYOffset;
+      
+      if (scrollingPos>200) {
+        if (scrollingPos>prevScroll) {
+          // if (header.style.top == "0px") {
+            // $('#header').animate({top: "-150px"}, 400)
+            header.style.animation = "navUp 0.6s ease-in forwards"
+          // }
+        } 
+        
+        if (scrollingPos <= prevScroll) {
+          // if (header.style.top == "-150px") {
+            // $('#header').animate({top: "0px"}, 400)
+            header.style.animation = "navDown 0.6s ease-out forwards"
+          // }
+        } 
+        prevScroll = scrollingPos;
+
+      }
+    });
+  })
+
+  let navMobile = document.getElementById("nav-mobile");
+
+
+  function handleNavOn() {
+    navMobile.style.display = "block";
+    navMobile.style.animation = "navAppear 0.4s ease-in forwards"
+  }
+
+
+  function handleNavOff() {
+    navMobile.style.animation = "navDisappear 0.4s ease-in forwards";
+    setTimeout(()=>{navMobile.style.display = "none";}, 400)
+
+  }
+
+
+      // //js load page - header
+      // if (width <= 1024) {
+      //     $('header').removeClass('page');
+      //     $('#search').removeClass('search_page');
+      // }
+  
+      // var width = $(window).width();
+      // if (width > 1024) {
+      //     $(window).load(function () {
+      //         var test = $('body').hasClass('home');
+      //         $(window).scroll(function () {
+      //             var iCurScrollPos = $(this).scrollTop();
+      //             if (iCurScrollPos > 0) {
+      //                 $('header').addClass('is_scroll');
+      //             } else {
+      //                 $('header').removeClass('is_scroll');
+      //             }
+      //         });
+
+      //         //click search of page
+      //         $('#search').click(function(e){
+      //             e.preventDefault();
+      //             $('.search_box').addClass('is_active');
+      //         });
+      //         $('.js_close_search').click(function(e){
+      //             $('.search_box').removeClass('is_active')
+      //         })
+                  
+      //         var iScrollPos = 0;
+      //         $(window).scroll(function () {
+      //             var iCurScrollPos = $(this).scrollTop();
+      //             if (iCurScrollPos < iScrollPos) {
+      //                 // Hành động scroll len
+      //                 $('header').removeClass('_scroll');
+      //             } else {
+      //                 if ($(this).scrollTop() == 0) {
+      //                     //Hành động ở trên top
+      //                     $('header').removeClass('_scroll');
+      //                 } else {
+      //                     // Hành động scroll xuong
+      //                     $('header').addClass('_scroll');
+      //                 }
+      //             }
+      //             if (iCurScrollPos < 0) {
+      //                 $('header').removeClass('_scroll');
+      //             }
+      //             iScrollPos = iCurScrollPos;
+      //         });
+      //     });
+      // }
+
+      // //js hieu ung scroll header mobile
+      // if (width <= 1024) {
+      //     $(window).scroll(function () {
+      //         var iCurScrollPos = $(this).scrollTop();
+      //         if (iCurScrollPos > 0) {
+      //             $('._header_mobile').addClass('_scroll');
+      //         } else {
+      //             $('._header_mobile').removeClass('_scroll');
+      //         }
+      //     });
+      // }
+
+      // // js-hamburger
+      // $('.js-hamburger').click(function () {
+      //     // $(this).toggleClass('is_active');
+      //     $('header, ._header_mobile, #search, ._coating').addClass('is_active');
+      // });
+
+      // $('._coating').click(function () {
+      //     $(this).removeClass('is_active');
+      //     $('header, ._header_mobile, #search').removeClass('is_active');
+      // })
+
+      // //js xu ly click menu mobile
+      // if (width <= 1024) {
+      //     $('._menu > li > a').click(function (event) {
+      //         $(this).parent().find('ul').first().slideToggle(300);
+      //         $(this).parent().siblings().find('ul').slideUp(300);
+      //         $('._menu li > a').removeAttr('style');
+      //         $(this).attr("style", "font-weight: bold;");
+
+      //         //js xu ly click outside
+      //         $(this).parent().find('ul').mouseleave(function () {
+      //             var thisUI = $(this);
+      //             $('html').click(function () {
+      //                 thisUI.slideUp(300);
+      //                 $('html').unbind('click');
+      //             });
+      //         });
+      //     });
+      // }
+
+
+      // // js check val input search       
+      
+      // $('#search input').keyup(function (event) {
+      //     var val_input_serch = $(this).val();
+      //     if(val_input_serch.length > 0){
+      //         $(this).attr('name','s');
+      //     }else{
+      //         $(this).attr('name','');
+      //     }
+      // });
+  // });
+</script>
 </html>

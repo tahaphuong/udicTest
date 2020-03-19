@@ -1164,6 +1164,8 @@ input:focus, textarea:focus {
 
   .nav-mobile-pattern img {
     height: 180vh;
+    width: auto;
+
     opacity: 0.15;
 
     position: relative;
@@ -1723,8 +1725,11 @@ input:focus, textarea:focus {
 
     .nav-mobile-pattern img {
       width: 120vw;
+      height: auto;
       top: -100vw;
     }
+
+
   }
 
 }

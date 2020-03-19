@@ -1163,11 +1163,12 @@ input:focus, textarea:focus {
   }
 
   .nav-mobile-pattern img {
+    height: 180vh;
     opacity: 0.15;
 
     position: relative;
     z-index: 21;
-    top: -100vh;
+    top: -150vh;
   }
 
 

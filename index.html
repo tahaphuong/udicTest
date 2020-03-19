@@ -13,7 +13,8 @@
 </head>
 <body>  
   <div id="nav-mobile" style="display: none">
-    <div onclick="handleNavOff()" class="nav-mobile-cross-con">
+    <div onclick="handleNavOff()" class="nav-mobile-header-con">
+      <div class="header-logo"><img src="./img/logo.png"/></div>
       <div class="hamburger"><i class="fas fa-times"></i></div>
     </div>
     <div class="nav-mobile-list">
@@ -26,7 +27,7 @@
       <a>THƯ VIỆN ẢNH</a>
       <a>LIÊN HỆ</a>
     </div>
-
+    <div class="nav-mobile-pattern"><img src="./img/pattern-big.png"/></div>
   </div>
   <!-- Nav bar toggle -->
   <div id="header" class="header" style="top: 0px; position: fixed; z-index: 11;">
@@ -80,10 +81,10 @@
     
   </div>
 
-  <div class="intro-1">
+  <div id="intro-1" class="intro-1">
     <div class="intro-1-upper">
       <div class="intro-1-upper-bg">
-        <div class="intro-1-pattern"><img src="./img/pattern-half.png"/><img src="./img/pattern-half.png"/><img src="./img/pattern-half.png"/><img src="./img/pattern-half.png"/></div>
+        <div class="intro-1-pattern"><img src="./img/pattern-half.png"/><img src="./img/pattern-half.png"/><img src="./img/pattern-half.png"/><img src="./img/pattern-half.png"/><img src="./img/pattern-half.png"/></div>
         <div class="intro-1-upper-text-con">
           <div class="sub-title">CUỘC SỐNG TIỆN NGHI</div>
           <div class="intro-1-title">Cảnh quan tuyệt mỹ</div>
@@ -107,7 +108,7 @@
     </div>
   </div>
 
-  <div class="intro-2">
+  <div id="intro-2" class="intro-2">
     <div class="intro-2-left">
       <div class="sub-title">HÀNH TRÌNH VLAND</div>
       <div class="intro-2-title">Kiến tạo thành công</div>
@@ -143,7 +144,7 @@
     
   </div>
 
-  <div class="info">
+  <div id="info" class="info">
     <div class="info-bg">
 
       <div class="info-header">
@@ -181,7 +182,7 @@
     </div>
   </div>
 
-  <div class="others">
+  <div id="others" class="others">
     <div class="others-header">
       <div class="sub-title">Tìm hiểu thêm</div>
       <div class="intro-2-title">Các dự án khác</div>
@@ -227,7 +228,7 @@
   </div>
 
 
-  <div class="service">
+  <div id="service" class="service">
     <!-- Use the same header tag as the "others" part -->
     <div class="others-header">
       <div class="sub-title">THÔNG TIN CÁC GÓI</div>
@@ -251,10 +252,7 @@
     </div>
   </div>
 
-  <div class="footer">
-
-
-
+  <div id="footer" class="footer">
     <div class="footer-left">
       <div class="footer-left-heading">
         <div class="footer-left-title">BẠN CẦN TƯ VẤN</div>
@@ -356,150 +354,98 @@
   let prevScroll = 0;
   let header = document.getElementById("header")
 
+  // make div appear on scroll to bottom
+  function divAppear(scrollingPos, id) {
+    let section = document.getElementById(id)
+
+    if (section.offsetTop - scrollingPos < window.innerHeight) {
+      let list = section.getElementsByTagName("div")
+
+
+      // to make home page look good, the first div of the intro-1 section must be there
+      if (id=="intro-1") {
+        list[0].style.animation = "appear 0.7s ease-out forwards"
+      }
+
+      for (let ele of list) {
+        if (ele.offsetTop - scrollingPos <= window.innerHeight*0.8 || id=="footer") { // can not scroll further than bottom of page
+          ele.style.animation = "appear 0.7s ease-out forwards"
+        }
+      }
+    }
+  }
+  
+  // make div disappear on scroll to top
+
+  function divDisappear(scrollingPos, id) {
+    let section = document.getElementById(id)
+    if (section.offsetTop - scrollingPos > window.innerHeight) {
+      let list = section.getElementsByTagName("div")
+      for (let ele of list) {      
+        ele.style.animation = "disappear 0.7s ease-out forwards"
+      }
+    }
+  }
+
+  
+
   $(document).ready(function () {
+
+    // set appearance for first section
+    if (window.innerWidth <= 700) {
+      divAppear(0, "intro-1"); 
+    }
+
+    // smooth scroll when reload
+    let body = $("html, body");
+    body.stop().animate({scrollTop: 0}, 700, 'swing')
+
+    // handle scroll event
     $(window).scroll(function () {
       let scrollingPos = window.pageYOffset;
-      
-      if (scrollingPos>200) {
-        if (scrollingPos>prevScroll) {
-          // if (header.style.top == "0px") {
-            // $('#header').animate({top: "-150px"}, 400)
-            header.style.animation = "navUp 0.6s ease-in forwards"
-          // }
-        } 
-        
-        if (scrollingPos <= prevScroll) {
-          // if (header.style.top == "-150px") {
-            // $('#header').animate({top: "0px"}, 400)
-            header.style.animation = "navDown 0.6s ease-out forwards"
-          // }
-        } 
-        prevScroll = scrollingPos;
 
-      }
+
+        // when scroll to bottom
+        if (scrollingPos>prevScroll) {
+          header.style.animation = "navUp 0.6s ease-in forwards"
+          divAppear(scrollingPos, "intro-1"); 
+          divAppear(scrollingPos, "intro-2"); 
+          divAppear(scrollingPos, "info"); 
+          divAppear(scrollingPos, "others"); 
+          divAppear(scrollingPos, "service");
+          divAppear(scrollingPos, "footer"); 
+        } 
+
+        // when scroll to top
+        if (scrollingPos <= prevScroll) {
+          header.style.animation = "navDown 0.6s ease-out forwards"
+          divDisappear(scrollingPos, "intro-1"); 
+          divDisappear(scrollingPos, "intro-2"); 
+          divDisappear(scrollingPos, "info"); 
+          divDisappear(scrollingPos, "others"); 
+          divDisappear(scrollingPos, "service");
+          divDisappear(scrollingPos, "footer"); 
+        } 
+
+        // get prevScroll => compare to scroll position 
+        //=> in order to check scroll direction
+        prevScroll = scrollingPos;
     });
   })
 
   let navMobile = document.getElementById("nav-mobile");
 
 
+  // handle Nav on (small) mobile devices
   function handleNavOn() {
     navMobile.style.display = "block";
-    navMobile.style.animation = "navAppear 0.4s ease-in forwards"
+    navMobile.style.animation = "appear 0.4s ease-in forwards"
   }
-
 
   function handleNavOff() {
-    navMobile.style.animation = "navDisappear 0.4s ease-in forwards";
+    navMobile.style.animation = "disappear 0.4s ease-in forwards";
     setTimeout(()=>{navMobile.style.display = "none";}, 400)
-
   }
 
-
-      // //js load page - header
-      // if (width <= 1024) {
-      //     $('header').removeClass('page');
-      //     $('#search').removeClass('search_page');
-      // }
-  
-      // var width = $(window).width();
-      // if (width > 1024) {
-      //     $(window).load(function () {
-      //         var test = $('body').hasClass('home');
-      //         $(window).scroll(function () {
-      //             var iCurScrollPos = $(this).scrollTop();
-      //             if (iCurScrollPos > 0) {
-      //                 $('header').addClass('is_scroll');
-      //             } else {
-      //                 $('header').removeClass('is_scroll');
-      //             }
-      //         });
-
-      //         //click search of page
-      //         $('#search').click(function(e){
-      //             e.preventDefault();
-      //             $('.search_box').addClass('is_active');
-      //         });
-      //         $('.js_close_search').click(function(e){
-      //             $('.search_box').removeClass('is_active')
-      //         })
-                  
-      //         var iScrollPos = 0;
-      //         $(window).scroll(function () {
-      //             var iCurScrollPos = $(this).scrollTop();
-      //             if (iCurScrollPos < iScrollPos) {
-      //                 // Hành động scroll len
-      //                 $('header').removeClass('_scroll');
-      //             } else {
-      //                 if ($(this).scrollTop() == 0) {
-      //                     //Hành động ở trên top
-      //                     $('header').removeClass('_scroll');
-      //                 } else {
-      //                     // Hành động scroll xuong
-      //                     $('header').addClass('_scroll');
-      //                 }
-      //             }
-      //             if (iCurScrollPos < 0) {
-      //                 $('header').removeClass('_scroll');
-      //             }
-      //             iScrollPos = iCurScrollPos;
-      //         });
-      //     });
-      // }
-
-      // //js hieu ung scroll header mobile
-      // if (width <= 1024) {
-      //     $(window).scroll(function () {
-      //         var iCurScrollPos = $(this).scrollTop();
-      //         if (iCurScrollPos > 0) {
-      //             $('._header_mobile').addClass('_scroll');
-      //         } else {
-      //             $('._header_mobile').removeClass('_scroll');
-      //         }
-      //     });
-      // }
-
-      // // js-hamburger
-      // $('.js-hamburger').click(function () {
-      //     // $(this).toggleClass('is_active');
-      //     $('header, ._header_mobile, #search, ._coating').addClass('is_active');
-      // });
-
-      // $('._coating').click(function () {
-      //     $(this).removeClass('is_active');
-      //     $('header, ._header_mobile, #search').removeClass('is_active');
-      // })
-
-      // //js xu ly click menu mobile
-      // if (width <= 1024) {
-      //     $('._menu > li > a').click(function (event) {
-      //         $(this).parent().find('ul').first().slideToggle(300);
-      //         $(this).parent().siblings().find('ul').slideUp(300);
-      //         $('._menu li > a').removeAttr('style');
-      //         $(this).attr("style", "font-weight: bold;");
-
-      //         //js xu ly click outside
-      //         $(this).parent().find('ul').mouseleave(function () {
-      //             var thisUI = $(this);
-      //             $('html').click(function () {
-      //                 thisUI.slideUp(300);
-      //                 $('html').unbind('click');
-      //             });
-      //         });
-      //     });
-      // }
-
-
-      // // js check val input search       
-      
-      // $('#search input').keyup(function (event) {
-      //     var val_input_serch = $(this).val();
-      //     if(val_input_serch.length > 0){
-      //         $(this).attr('name','s');
-      //     }else{
-      //         $(this).attr('name','');
-      //     }
-      // });
-  // });
 </script>
 </html>

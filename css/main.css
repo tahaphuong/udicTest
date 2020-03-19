@@ -484,12 +484,13 @@ input:focus, textarea:focus {
 .intro-2-img img {
   width: 65vw;
   position: relative;
-  z-index: 20;
+  z-index: 10;
 }
 
 .intro-2-img-footer {
   width: 100%;
   position: relative;
+  z-index: 11;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1230,13 +1231,13 @@ input:focus, textarea:focus {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 20;
+    z-index: 30;
   }
   .nav-mobile-header-con {
     height: 18vw;
     width: 100vw;
     position: relative;
-    z-index: 22;
+    z-index: 32;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -1250,7 +1251,7 @@ input:focus, textarea:focus {
   }
   .nav-mobile-list {
     position: relative;
-    z-index: 22;
+    z-index: 32;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -1285,7 +1286,7 @@ input:focus, textarea:focus {
     width: auto;
     opacity: 0.15;
     position: relative;
-    z-index: 21;
+    z-index: 31;
     top: -150vh;
   }
   .home {
@@ -1460,8 +1461,9 @@ input:focus, textarea:focus {
     font-size: calc(2vw + 5px);
   }
   .intro-2-img-page {
-    position: absolute;
-    bottom: 9vw;
+    position: relative;
+    bottom: 10vw;
+    left: 1vw;
     right: 0;
   }
   .intro-2-img-footer-title {
